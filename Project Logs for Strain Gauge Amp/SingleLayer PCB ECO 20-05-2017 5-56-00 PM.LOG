@@ -1,0 +1,89 @@
+Added Component: Designator=C1(C1206)
+Added Component: Designator=C2(SMD CAPACITOR 220UF 16V)
+Added Component: Designator=IC1(SOIC16_M)
+Added Component: Designator=P1(SMD 4Wire)
+Added Component: Designator=P2(SMD 4Wire)
+Added Component: Designator=Q1(TO220_SMD_BENT)
+Added Component: Designator=R1(R0805)
+Added Component: Designator=R2(R0805)
+Added Component: Designator=R3(R0805)
+Added Component: Designator=R4(R0805)
+Added Component: Designator=RG1(R0805)
+Added Component: Designator=W1(Jumper)
+Added Component: Designator=W2(Jumper)
+Added Component: Designator=W3(Jumper)
+Added Component: Designator=W4(Jumper)
+Added Component: Designator=W5(Jumper)
+Added Component: Designator=W6(Jumper)
+Added Component: Designator=W7(Jumper)
+Added Pin To Net: NetName=12V Pin=C1-1
+Added Pin To Net: NetName=12V Pin=C2-1
+Added Pin To Net: NetName=12V Pin=IC1-1
+Added Pin To Net: NetName=12V Pin=IC1-2
+Added Pin To Net: NetName=12V Pin=P1-1
+Added Pin To Net: NetName=12V Pin=Q1-2
+Added Net: Name=12V
+Added Pin To Net: NetName=GND Pin=C1-2
+Added Pin To Net: NetName=GND Pin=C2-2
+Added Pin To Net: NetName=GND Pin=IC1-3
+Added Pin To Net: NetName=GND Pin=IC1-12
+Added Pin To Net: NetName=GND Pin=P1-4
+Added Pin To Net: NetName=GND Pin=P2-4
+Added Pin To Net: NetName=GND Pin=R2-1
+Added Pin To Net: NetName=GND Pin=R4-1
+Added Pin To Net: NetName=GND Pin=W6-2
+Added Net: Name=GND
+Added Pin To Net: NetName=NetIC1_4 Pin=IC1-4
+Added Pin To Net: NetName=NetIC1_4 Pin=Q1-3
+Added Pin To Net: NetName=NetIC1_4 Pin=W7-2
+Added Net: Name=NetIC1_4
+Added Pin To Net: NetName=NetIC1_5 Pin=IC1-5
+Added Pin To Net: NetName=NetIC1_5 Pin=W5-1
+Added Pin To Net: NetName=NetIC1_5 Pin=W6-1
+Added Net: Name=NetIC1_5
+Added Pin To Net: NetName=NetIC1_8 Pin=IC1-8
+Added Pin To Net: NetName=NetIC1_8 Pin=RG1-2
+Added Net: Name=NetIC1_8
+Added Pin To Net: NetName=NetIC1_9 Pin=IC1-9
+Added Pin To Net: NetName=NetIC1_9 Pin=RG1-1
+Added Net: Name=NetIC1_9
+Added Pin To Net: NetName=NetIC1_13 Pin=IC1-13
+Added Pin To Net: NetName=NetIC1_13 Pin=W1-1
+Added Net: Name=NetIC1_13
+Added Pin To Net: NetName=NetIC1_14 Pin=IC1-14
+Added Pin To Net: NetName=NetIC1_14 Pin=W2-1
+Added Net: Name=NetIC1_14
+Added Pin To Net: NetName=NetIC1_15 Pin=IC1-15
+Added Pin To Net: NetName=NetIC1_15 Pin=W3-1
+Added Net: Name=NetIC1_15
+Added Pin To Net: NetName=NetIC1_16 Pin=IC1-16
+Added Pin To Net: NetName=NetIC1_16 Pin=W4-1
+Added Net: Name=NetIC1_16
+Added Pin To Net: NetName=VIN+ Pin=IC1-6
+Added Pin To Net: NetName=VIN+ Pin=P2-2
+Added Pin To Net: NetName=VIN+ Pin=R1-1
+Added Pin To Net: NetName=VIN+ Pin=R2-2
+Added Net: Name=VIN+
+Added Pin To Net: NetName=VIN- Pin=IC1-7
+Added Pin To Net: NetName=VIN- Pin=P2-3
+Added Pin To Net: NetName=VIN- Pin=R3-1
+Added Pin To Net: NetName=VIN- Pin=R4-2
+Added Net: Name=VIN-
+Added Pin To Net: NetName=VOUT+ Pin=IC1-10
+Added Pin To Net: NetName=VOUT+ Pin=IC1-11
+Added Pin To Net: NetName=VOUT+ Pin=P1-2
+Added Net: Name=VOUT+
+Added Pin To Net: NetName=VOUT- Pin=P1-3
+Added Pin To Net: NetName=VOUT- Pin=W5-2
+Added Net: Name=VOUT-
+Added Pin To Net: NetName=VREF Pin=P2-1
+Added Pin To Net: NetName=VREF Pin=Q1-1
+Added Pin To Net: NetName=VREF Pin=R1-2
+Added Pin To Net: NetName=VREF Pin=R3-2
+Added Pin To Net: NetName=VREF Pin=W1-2
+Added Pin To Net: NetName=VREF Pin=W2-2
+Added Pin To Net: NetName=VREF Pin=W3-2
+Added Pin To Net: NetName=VREF Pin=W4-2
+Added Pin To Net: NetName=VREF Pin=W7-1
+Added Net: Name=VREF
+Added Class: Name=Sheet1
