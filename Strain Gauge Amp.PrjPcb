@@ -70,7 +70,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=
+DocumentUniqueId=HCKTYYTE
 
 [Document3]
 DocumentPath=2x1 Panelisation.PcbDoc
@@ -87,75 +87,41 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=
+DocumentUniqueId=UNLRDBIQ
 
-[GeneratedDocument1]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.DRR
+[Document4]
+DocumentPath=strainGuageLib.PcbLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
 DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=JARMMWVO
 
-[GeneratedDocument2]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.EXTREP
+[Document5]
+DocumentPath=SingleLayer.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
 DItemRevisionGUID=
-
-[GeneratedDocument3]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument4]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.GBO
-DItemRevisionGUID=
-
-[GeneratedDocument5]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.GBS
-DItemRevisionGUID=
-
-[GeneratedDocument6]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.GKO
-DItemRevisionGUID=
-
-[GeneratedDocument7]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.GM1
-DItemRevisionGUID=
-
-[GeneratedDocument8]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument9]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument10]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.GTS
-DItemRevisionGUID=
-
-[GeneratedDocument11]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument12]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.REP
-DItemRevisionGUID=
-
-[GeneratedDocument13]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.RUL
-DItemRevisionGUID=
-
-[GeneratedDocument14]
-DocumentPath=Project Outputs for Strain Gauge Amp\2x1 Panelisation.TXT
-DItemRevisionGUID=
-
-[GeneratedDocument15]
-DocumentPath=Project Outputs for Strain Gauge Amp\Design Rule Check - 2x1 Panelisation.html
-DItemRevisionGUID=
-
-[GeneratedDocument16]
-DocumentPath=Project Outputs for Strain Gauge Amp\Design Rule Check - PCB1.html
-DItemRevisionGUID=
-
-[GeneratedDocument17]
-DocumentPath=IDFReport_PCB1.html
-DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=OFHMYDBX
 
 [SearchPath1]
 Path=cmt-altium-libs\*.*
