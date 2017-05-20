@@ -1,0 +1,5 @@
+DRC Rules Export File for PCB: C:\Users\Jorgito\Google Drive\CMT 14\Strain Gauge Amp\New Altium Files\2x1 Panelisation.PcbDoc
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=10.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=10.00
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
