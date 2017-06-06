@@ -1,0 +1,681 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD16\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">6/06/2017</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11:19:18 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc" class="file"><acronym title="C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc">C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">115</td></tr>
+</table>
+</td>
+</table><a name="ID5X4BYFW1WQHBDVRFIZLUS100LKLSJKQ4ZNVWJMGJ51BBCF3YUIJF"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDO3N1NIHUZ25AFMYMYFNOF0OC5GEJ5G1LVACAO4CGIYEWYXDOF52C">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDG3SFX1RQRYEJOLSW4KHI4K15DLXXBS2QZTKQU2HBXWV0PGLSWJTO">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCCKWVN1HSUJLIKDB4ADRQINFUKIR0KK1OKES2GK0Y4BSAUGQHVK">Clearance Constraint (Gap=0.2mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLATM1AIJJEEWLDFUWSKOQSP0ZYUELJPSOQ5LVFFSAB5BNZYYS2I">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDUCLN0CWF0BBLH3RFORJ4LVN2JN5G3J22MO0PEJ1WZTRXHN0HFHF">Width Constraint (Min=0.254mm) (Max=0.8mm) (Preferred=0.6mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5TR3M3L2Y13LNI1PGE4EBLZNCPKQOBHXAF1NNGDZGYQYRW4VBZ1G">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUE31C5415DDCHJK0IOKSJLJYZG3KZ2QDWW0RPLIPRFPOE40VV2GB">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5TYTDBW2XI41JLVSJAJ1G0XQDNH1FUGPD0JV2BJOKZQUFYCKG4OJ">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSS1LIUC2JWZRGPCNTS2DDKYZQMO3C4YFSUF1JLIMBZEAW5OWKVPC">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5X2SO12BF10JEHNMDLUKHV3VCB1HS5E5V4GWFCCC2ULN3HK4THDK">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">83</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1EYTSZ5D5CBNGE4U45R0TEQLACBYAP10Q5LTEPIS3VMIGGI1ODNL">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">31</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4PFCIQXD13VD3TOCYVF3MJFVLWQYWDOQUQTYUDNRA0VOMH5M4K">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDO0HIPPFA3J5EFNYILA0M2Q0PQDUAA4XDJ5JG55LHAPFFSTO45UNE">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">115</td>
+</tr>
+</table><br><a name="IDSS1LIUC2JWZRGPCNTS2DDKYZQMO3C4YFSUF1JLIMBZEAW5OWKVPC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3139.375mil|Location2.X=3150.625mil|Location1.Y=1614.375mil|Location2.Y=1625.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3139.375mil|Location2.X=3150.625mil|Location1.Y=1614.375mil|Location2.Y=1625.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.051mm &lt; 0.254mm) Between Via (79.883mm,40.386mm) from Top Layer to Bottom Layer And Via (79.883mm,41.91mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.051mm] / [Bottom Solder] Mask Sliver [0.051mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID5X2SO12BF10JEHNMDLUKHV3VCB1HS5E5V4GWFCCC2ULN3HK4THDK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3214.532mil|Location2.X=3225.782mil|Location1.Y=1776.462mil|Location2.Y=1787.712mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3214.532mil|Location2.X=3225.782mil|Location1.Y=1776.462mil|Location2.Y=1787.712mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (81.534mm,44.958mm)(81.534mm,49.022mm) on Top Overlay And Pad W5-2(82.55mm,45.965mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3274.218mil|Location2.X=3285.468mil|Location1.Y=1776.462mil|Location2.Y=1787.712mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3274.218mil|Location2.X=3285.468mil|Location1.Y=1776.462mil|Location2.Y=1787.712mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (83.566mm,44.958mm)(83.566mm,49.022mm) on Top Overlay And Pad W5-2(82.55mm,45.965mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3214.847mil|Location2.X=3226.097mil|Location1.Y=1775.34mil|Location2.Y=1786.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3214.847mil|Location2.X=3226.097mil|Location1.Y=1775.34mil|Location2.Y=1786.59mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (81.534mm,44.958mm)(83.566mm,44.958mm) on Top Overlay And Pad W5-2(82.55mm,45.965mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3214.532mil|Location2.X=3225.782mil|Location1.Y=1857.17mil|Location2.Y=1868.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3214.532mil|Location2.X=3225.782mil|Location1.Y=1857.17mil|Location2.Y=1868.42mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (81.534mm,44.958mm)(81.534mm,49.022mm) on Top Overlay And Pad W5-1(82.55mm,48.015mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3274.218mil|Location2.X=3285.468mil|Location1.Y=1857.17mil|Location2.Y=1868.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3274.218mil|Location2.X=3285.468mil|Location1.Y=1857.17mil|Location2.Y=1868.42mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (83.566mm,44.958mm)(83.566mm,49.022mm) on Top Overlay And Pad W5-1(82.55mm,48.015mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3214.847mil|Location2.X=3226.097mil|Location1.Y=1913.41mil|Location2.Y=1924.66mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3214.847mil|Location2.X=3226.097mil|Location1.Y=1913.41mil|Location2.Y=1924.66mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (81.534mm,49.022mm)(83.566mm,49.022mm) on Top Overlay And Pad W5-1(82.55mm,48.015mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3200.34mil|Location2.X=3211.59mil|Location1.Y=1954.848mil|Location2.Y=1966.098mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3200.34mil|Location2.X=3211.59mil|Location1.Y=1954.848mil|Location2.Y=1966.098mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (81.153mm,49.53mm)(81.153mm,51.562mm) on Top Overlay And Pad W6-2(82.16mm,50.546mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3201.462mil|Location2.X=3212.712mil|Location1.Y=1954.533mil|Location2.Y=1965.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3201.462mil|Location2.X=3212.712mil|Location1.Y=1954.533mil|Location2.Y=1965.783mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (81.153mm,49.53mm)(85.217mm,49.53mm) on Top Overlay And Pad W6-2(82.16mm,50.546mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3201.462mil|Location2.X=3212.712mil|Location1.Y=2014.217mil|Location2.Y=2025.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3201.462mil|Location2.X=3212.712mil|Location1.Y=2014.217mil|Location2.Y=2025.467mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (81.153mm,51.562mm)(85.217mm,51.562mm) on Top Overlay And Pad W6-2(82.16mm,50.546mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3338.41mil|Location2.X=3349.66mil|Location1.Y=1954.848mil|Location2.Y=1966.098mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3338.41mil|Location2.X=3349.66mil|Location1.Y=1954.848mil|Location2.Y=1966.098mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (85.217mm,49.53mm)(85.217mm,51.562mm) on Top Overlay And Pad W6-1(84.21mm,50.546mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3282.17mil|Location2.X=3293.42mil|Location1.Y=1954.533mil|Location2.Y=1965.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3282.17mil|Location2.X=3293.42mil|Location1.Y=1954.533mil|Location2.Y=1965.783mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (81.153mm,49.53mm)(85.217mm,49.53mm) on Top Overlay And Pad W6-1(84.21mm,50.546mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3282.17mil|Location2.X=3293.42mil|Location1.Y=2014.217mil|Location2.Y=2025.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3282.17mil|Location2.X=3293.42mil|Location1.Y=2014.217mil|Location2.Y=2025.467mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (81.153mm,51.562mm)(85.217mm,51.562mm) on Top Overlay And Pad W6-1(84.21mm,50.546mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3273.41mil|Location2.X=3284.66mil|Location1.Y=2049.847mil|Location2.Y=2061.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3273.41mil|Location2.X=3284.66mil|Location1.Y=2049.847mil|Location2.Y=2061.097mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (83.566mm,51.943mm)(83.566mm,53.975mm) on Top Overlay And Pad R4-1(82.559mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3217.17mil|Location2.X=3228.42mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3217.17mil|Location2.X=3228.42mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (79.502mm,51.943mm)(83.566mm,51.943mm) on Top Overlay And Pad R4-1(82.559mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3217.17mil|Location2.X=3228.42mil|Location1.Y=2109.218mil|Location2.Y=2120.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3217.17mil|Location2.X=3228.42mil|Location1.Y=2109.218mil|Location2.Y=2120.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (79.502mm,53.975mm)(83.566mm,53.975mm) on Top Overlay And Pad R4-1(82.559mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3135.34mil|Location2.X=3146.59mil|Location1.Y=2049.847mil|Location2.Y=2061.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3135.34mil|Location2.X=3146.59mil|Location1.Y=2049.847mil|Location2.Y=2061.097mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (79.502mm,51.943mm)(79.502mm,53.975mm) on Top Overlay And Pad R4-2(80.509mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3136.462mil|Location2.X=3147.712mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3136.462mil|Location2.X=3147.712mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (79.502mm,51.943mm)(83.566mm,51.943mm) on Top Overlay And Pad R4-2(80.509mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3136.462mil|Location2.X=3147.712mil|Location1.Y=2109.218mil|Location2.Y=2120.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3136.462mil|Location2.X=3147.712mil|Location1.Y=2109.218mil|Location2.Y=2120.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (79.502mm,53.975mm)(83.566mm,53.975mm) on Top Overlay And Pad R4-2(80.509mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.162mil|Location2.X=2996.412mil|Location1.Y=1764.749mil|Location2.Y=1775.999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.162mil|Location2.X=2996.412mil|Location1.Y=1764.749mil|Location2.Y=1775.999mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.193mm &lt; 0.254mm) Between Track (75.411mm,44.621mm)(79.021mm,44.621mm) on Top Overlay And Pad P1-4(77.216mm,45.664mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.193mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3015.223mil|Location2.X=3022.889mil|Location1.Y=1790.735mil|Location2.Y=1798.402mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3015.223mil|Location2.X=3022.889mil|Location1.Y=1790.735mil|Location2.Y=1798.402mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q1" (75.59mm,44.196mm) on Top Overlay And Pad P1-4(77.216mm,45.664mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.162mil|Location2.X=2996.412mil|Location1.Y=1991.126mil|Location2.Y=2002.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.162mil|Location2.X=2996.412mil|Location1.Y=1991.126mil|Location2.Y=2002.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.093mm &lt; 0.254mm) Between Track (75.338mm,50.421mm)(78.994mm,50.421mm) on Top Overlay And Pad P1-1(77.216mm,51.364mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.093mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.162mil|Location2.X=2996.412mil|Location1.Y=2044.001mil|Location2.Y=2055.251mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.162mil|Location2.X=2996.412mil|Location1.Y=2044.001mil|Location2.Y=2055.251mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.193mm &lt; 0.254mm) Between Track (75.338mm,52.407mm)(79.021mm,52.407mm) on Top Overlay And Pad P1-1(77.216mm,51.364mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.193mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3085.379mil|Location2.X=3093.046mil|Location1.Y=1994.749mil|Location2.Y=2002.415mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3085.379mil|Location2.X=3093.046mil|Location1.Y=1994.749mil|Location2.Y=2002.415mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "W6" (78.486mm,49.911mm) on Top Overlay And Pad P1-1(77.216mm,51.364mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.162mil|Location2.X=2996.412mil|Location1.Y=1967.505mil|Location2.Y=1978.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.162mil|Location2.X=2996.412mil|Location1.Y=1967.505mil|Location2.Y=1978.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.107mm &lt; 0.254mm) Between Track (75.338mm,50.421mm)(78.994mm,50.421mm) on Top Overlay And Pad P1-2(77.216mm,49.464mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.107mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3080.755mil|Location2.X=3088.421mil|Location1.Y=1961.167mil|Location2.Y=1968.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3080.755mil|Location2.X=3088.421mil|Location1.Y=1961.167mil|Location2.Y=1968.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "W6" (78.486mm,49.911mm) on Top Overlay And Pad P1-2(77.216mm,49.464mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4040.162mil|Location2.X=4051.412mil|Location1.Y=1804.001mil|Location2.Y=1815.251mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4040.162mil|Location2.X=4051.412mil|Location1.Y=1804.001mil|Location2.Y=1815.251mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.193mm &lt; 0.254mm) Between Track (102.208mm,46.311mm)(105.818mm,46.311mm) on Top Overlay And Pad P2-4(104.013mm,45.268mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.193mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4040.162mil|Location2.X=4051.412mil|Location1.Y=1524.749mil|Location2.Y=1535.999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4040.162mil|Location2.X=4051.412mil|Location1.Y=1524.749mil|Location2.Y=1535.999mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.193mm &lt; 0.254mm) Between Track (102.208mm,38.525mm)(105.891mm,38.525mm) on Top Overlay And Pad P2-1(104.013mm,39.568mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.193mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4040.162mil|Location2.X=4051.412mil|Location1.Y=1577.624mil|Location2.Y=1588.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4040.162mil|Location2.X=4051.412mil|Location1.Y=1577.624mil|Location2.Y=1588.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.093mm &lt; 0.254mm) Between Track (102.235mm,40.511mm)(105.891mm,40.511mm) on Top Overlay And Pad P2-1(104.013mm,39.568mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.093mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4040.162mil|Location2.X=4051.412mil|Location1.Y=1601.245mil|Location2.Y=1612.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4040.162mil|Location2.X=4051.412mil|Location1.Y=1601.245mil|Location2.Y=1612.495mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.107mm &lt; 0.254mm) Between Track (102.235mm,40.511mm)(105.891mm,40.511mm) on Top Overlay And Pad P2-2(104.013mm,41.468mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.107mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4133.903mil|Location2.X=4145.153mil|Location1.Y=1947.918mil|Location2.Y=1959.168mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4133.903mil|Location2.X=4145.153mil|Location1.Y=1947.918mil|Location2.Y=1959.168mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.15mm &lt; 0.254mm) Between Track (105.144mm,48.495mm)(105.144mm,49.295mm) on Top Overlay And Pad C1-1(104.394mm,50.245mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4074.847mil|Location2.X=4086.097mil|Location1.Y=1947.918mil|Location2.Y=1959.168mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4074.847mil|Location2.X=4086.097mil|Location1.Y=1947.918mil|Location2.Y=1959.168mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.15mm &lt; 0.254mm) Between Track (103.644mm,48.495mm)(103.644mm,49.295mm) on Top Overlay And Pad C1-1(104.394mm,50.245mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4133.903mil|Location2.X=4145.153mil|Location1.Y=1890.832mil|Location2.Y=1902.082mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4133.903mil|Location2.X=4145.153mil|Location1.Y=1890.832mil|Location2.Y=1902.082mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.15mm &lt; 0.254mm) Between Track (105.144mm,48.495mm)(105.144mm,49.295mm) on Top Overlay And Pad C1-2(104.394mm,47.545mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4074.847mil|Location2.X=4086.097mil|Location1.Y=1890.832mil|Location2.Y=1902.082mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4074.847mil|Location2.X=4086.097mil|Location1.Y=1890.832mil|Location2.Y=1902.082mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.15mm &lt; 0.254mm) Between Track (103.644mm,48.495mm)(103.644mm,49.295mm) on Top Overlay And Pad C1-2(104.394mm,47.545mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4080.147mil|Location2.X=4087.814mil|Location1.Y=1853.755mil|Location2.Y=1861.421mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4080.147mil|Location2.X=4087.814mil|Location1.Y=1853.755mil|Location2.Y=1861.421mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "P2" (102.21mm,47.32mm) on Top Overlay And Pad C1-2(104.394mm,47.545mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3849.215mil|Location2.X=3856.882mil|Location1.Y=1761.245mil|Location2.Y=1768.911mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3849.215mil|Location2.X=3856.882mil|Location1.Y=1761.245mil|Location2.Y=1768.911mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Track (95.79mm,44.833mm)(99.79mm,44.833mm) on Top Overlay And Pad C2-1(97.79mm,45.133mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3843.119mil|Location2.X=3850.786mil|Location1.Y=2021.087mil|Location2.Y=2028.753mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3843.119mil|Location2.X=3850.786mil|Location1.Y=2021.087mil|Location2.Y=2028.753mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Track (94.49mm,51.433mm)(101.09mm,51.433mm) on Top Overlay And Pad C2-2(97.79mm,51.133mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.532mil|Location2.X=3920.782mil|Location1.Y=1622.17mil|Location2.Y=1633.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.532mil|Location2.X=3920.782mil|Location1.Y=1622.17mil|Location2.Y=1633.42mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (99.187mm,38.989mm)(99.187mm,43.053mm) on Top Overlay And Pad R3-1(100.203mm,42.046mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3969.218mil|Location2.X=3980.468mil|Location1.Y=1622.17mil|Location2.Y=1633.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3969.218mil|Location2.X=3980.468mil|Location1.Y=1622.17mil|Location2.Y=1633.42mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (101.219mm,38.989mm)(101.219mm,43.053mm) on Top Overlay And Pad R3-1(100.203mm,42.046mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.847mil|Location2.X=3921.097mil|Location1.Y=1678.41mil|Location2.Y=1689.66mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.847mil|Location2.X=3921.097mil|Location1.Y=1678.41mil|Location2.Y=1689.66mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (99.187mm,43.053mm)(101.219mm,43.053mm) on Top Overlay And Pad R3-1(100.203mm,42.046mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.532mil|Location2.X=3920.782mil|Location1.Y=1541.462mil|Location2.Y=1552.712mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.532mil|Location2.X=3920.782mil|Location1.Y=1541.462mil|Location2.Y=1552.712mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (99.187mm,38.989mm)(99.187mm,43.053mm) on Top Overlay And Pad R3-2(100.203mm,39.996mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3969.218mil|Location2.X=3980.468mil|Location1.Y=1541.462mil|Location2.Y=1552.712mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3969.218mil|Location2.X=3980.468mil|Location1.Y=1541.462mil|Location2.Y=1552.712mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (101.219mm,38.989mm)(101.219mm,43.053mm) on Top Overlay And Pad R3-2(100.203mm,39.996mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.847mil|Location2.X=3921.097mil|Location1.Y=1540.34mil|Location2.Y=1551.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3909.847mil|Location2.X=3921.097mil|Location1.Y=1540.34mil|Location2.Y=1551.59mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (99.187mm,38.989mm)(101.219mm,38.989mm) on Top Overlay And Pad R3-2(100.203mm,39.996mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3911.639mil|Location2.X=3919.306mil|Location1.Y=1543.254mil|Location2.Y=1550.92mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3911.639mil|Location2.X=3919.306mil|Location1.Y=1543.254mil|Location2.Y=1550.92mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R1" (99.568mm,38.735mm) on Top Overlay And Pad R3-2(100.203mm,39.996mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3848.41mil|Location2.X=3859.66mil|Location1.Y=2109.847mil|Location2.Y=2121.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3848.41mil|Location2.X=3859.66mil|Location1.Y=2109.847mil|Location2.Y=2121.097mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (98.171mm,53.467mm)(98.171mm,55.499mm) on Top Overlay And Pad RG1-1(97.164mm,54.483mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3792.17mil|Location2.X=3803.42mil|Location1.Y=2109.532mil|Location2.Y=2120.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3792.17mil|Location2.X=3803.42mil|Location1.Y=2109.532mil|Location2.Y=2120.782mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (94.107mm,53.467mm)(98.171mm,53.467mm) on Top Overlay And Pad RG1-1(97.164mm,54.483mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3792.17mil|Location2.X=3803.42mil|Location1.Y=2169.218mil|Location2.Y=2180.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3792.17mil|Location2.X=3803.42mil|Location1.Y=2169.218mil|Location2.Y=2180.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (94.107mm,55.499mm)(98.171mm,55.499mm) on Top Overlay And Pad RG1-1(97.164mm,54.483mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3804.654mil|Location2.X=3812.32mil|Location1.Y=2140.327mil|Location2.Y=2147.994mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3804.654mil|Location2.X=3812.32mil|Location1.Y=2140.327mil|Location2.Y=2147.994mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C2" (94.488mm,53.543mm) on Top Overlay And Pad RG1-1(97.164mm,54.483mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3710.34mil|Location2.X=3721.59mil|Location1.Y=2109.847mil|Location2.Y=2121.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3710.34mil|Location2.X=3721.59mil|Location1.Y=2109.847mil|Location2.Y=2121.097mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (94.107mm,53.467mm)(94.107mm,55.499mm) on Top Overlay And Pad RG1-2(95.114mm,54.483mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3711.462mil|Location2.X=3722.712mil|Location1.Y=2109.532mil|Location2.Y=2120.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3711.462mil|Location2.X=3722.712mil|Location1.Y=2109.532mil|Location2.Y=2120.782mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (94.107mm,53.467mm)(98.171mm,53.467mm) on Top Overlay And Pad RG1-2(95.114mm,54.483mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3711.462mil|Location2.X=3722.712mil|Location1.Y=2169.218mil|Location2.Y=2180.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3711.462mil|Location2.X=3722.712mil|Location1.Y=2169.218mil|Location2.Y=2180.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (94.107mm,55.499mm)(98.171mm,55.499mm) on Top Overlay And Pad RG1-2(95.114mm,54.483mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3713.254mil|Location2.X=3720.92mil|Location1.Y=2111.639mil|Location2.Y=2119.306mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3713.254mil|Location2.X=3720.92mil|Location1.Y=2111.639mil|Location2.Y=2119.306mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C2" (94.488mm,53.543mm) on Top Overlay And Pad RG1-2(95.114mm,54.483mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3975.34mil|Location2.X=3986.59mil|Location1.Y=2049.847mil|Location2.Y=2061.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3975.34mil|Location2.X=3986.59mil|Location1.Y=2049.847mil|Location2.Y=2061.097mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (100.838mm,51.943mm)(100.838mm,53.975mm) on Top Overlay And Pad R2-1(101.845mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3976.462mil|Location2.X=3987.712mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3976.462mil|Location2.X=3987.712mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (100.838mm,51.943mm)(104.902mm,51.943mm) on Top Overlay And Pad R2-1(101.845mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3976.462mil|Location2.X=3987.712mil|Location1.Y=2109.218mil|Location2.Y=2120.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3976.462mil|Location2.X=3987.712mil|Location1.Y=2109.218mil|Location2.Y=2120.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (100.838mm,53.975mm)(104.902mm,53.975mm) on Top Overlay And Pad R2-1(101.845mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.41mil|Location2.X=4124.66mil|Location1.Y=2049.847mil|Location2.Y=2061.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.41mil|Location2.X=4124.66mil|Location1.Y=2049.847mil|Location2.Y=2061.097mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (104.902mm,51.943mm)(104.902mm,53.975mm) on Top Overlay And Pad R2-2(103.895mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4057.17mil|Location2.X=4068.42mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4057.17mil|Location2.X=4068.42mil|Location1.Y=2049.532mil|Location2.Y=2060.782mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (100.838mm,51.943mm)(104.902mm,51.943mm) on Top Overlay And Pad R2-2(103.895mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4057.17mil|Location2.X=4068.42mil|Location1.Y=2109.218mil|Location2.Y=2120.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4057.17mil|Location2.X=4068.42mil|Location1.Y=2109.218mil|Location2.Y=2120.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (100.838mm,53.975mm)(104.902mm,53.975mm) on Top Overlay And Pad R2-2(103.895mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4063.755mil|Location2.X=4071.421mil|Location1.Y=2052.405mil|Location2.Y=2060.072mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4063.755mil|Location2.X=4071.421mil|Location1.Y=2052.405mil|Location2.Y=2060.072mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C1" (103.454mm,51.918mm) on Top Overlay And Pad R2-2(103.895mm,52.959mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4007.17mil|Location2.X=4018.42mil|Location1.Y=1409.533mil|Location2.Y=1420.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4007.17mil|Location2.X=4018.42mil|Location1.Y=1409.533mil|Location2.Y=1420.783mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (99.568mm,35.687mm)(103.632mm,35.687mm) on Top Overlay And Pad R1-1(102.625mm,36.703mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4007.17mil|Location2.X=4018.42mil|Location1.Y=1469.217mil|Location2.Y=1480.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4007.17mil|Location2.X=4018.42mil|Location1.Y=1469.217mil|Location2.Y=1480.467mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (99.568mm,37.719mm)(103.632mm,37.719mm) on Top Overlay And Pad R1-1(102.625mm,36.703mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4063.41mil|Location2.X=4074.66mil|Location1.Y=1409.848mil|Location2.Y=1421.098mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4063.41mil|Location2.X=4074.66mil|Location1.Y=1409.848mil|Location2.Y=1421.098mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (103.632mm,35.687mm)(103.632mm,37.719mm) on Top Overlay And Pad R1-1(102.625mm,36.703mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3926.462mil|Location2.X=3937.712mil|Location1.Y=1409.533mil|Location2.Y=1420.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3926.462mil|Location2.X=3937.712mil|Location1.Y=1409.533mil|Location2.Y=1420.783mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (99.568mm,35.687mm)(103.632mm,35.687mm) on Top Overlay And Pad R1-2(100.575mm,36.703mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3926.462mil|Location2.X=3937.712mil|Location1.Y=1469.217mil|Location2.Y=1480.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3926.462mil|Location2.X=3937.712mil|Location1.Y=1469.217mil|Location2.Y=1480.467mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.016mm &lt; 0.254mm) Between Track (99.568mm,37.719mm)(103.632mm,37.719mm) on Top Overlay And Pad R1-2(100.575mm,36.703mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.016mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3925.34mil|Location2.X=3936.59mil|Location1.Y=1409.848mil|Location2.Y=1421.098mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3925.34mil|Location2.X=3936.59mil|Location1.Y=1409.848mil|Location2.Y=1421.098mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.057mm &lt; 0.254mm) Between Track (99.568mm,35.687mm)(99.568mm,37.719mm) on Top Overlay And Pad R1-2(100.575mm,36.703mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.057mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=2119.375mil|Location2.Y=2130.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=2119.375mil|Location2.Y=2130.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (89.116mm,44.53mm)(89.116mm,54.53mm) on Top Overlay And Pad IC1-9(87.466mm,53.975mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=2069.375mil|Location2.Y=2080.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=2069.375mil|Location2.Y=2080.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (89.116mm,44.53mm)(89.116mm,54.53mm) on Top Overlay And Pad IC1-10(87.466mm,52.705mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=2019.375mil|Location2.Y=2030.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=2019.375mil|Location2.Y=2030.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (89.116mm,44.53mm)(89.116mm,54.53mm) on Top Overlay And Pad IC1-11(87.466mm,51.435mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=1969.375mil|Location2.Y=1980.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=1969.375mil|Location2.Y=1980.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (89.116mm,44.53mm)(89.116mm,54.53mm) on Top Overlay And Pad IC1-12(87.466mm,50.165mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=1919.375mil|Location2.Y=1930.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=1919.375mil|Location2.Y=1930.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (89.116mm,44.53mm)(89.116mm,54.53mm) on Top Overlay And Pad IC1-13(87.466mm,48.895mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=1869.375mil|Location2.Y=1880.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=1869.375mil|Location2.Y=1880.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (89.116mm,44.53mm)(89.116mm,54.53mm) on Top Overlay And Pad IC1-14(87.466mm,47.625mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=1819.375mil|Location2.Y=1830.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=1819.375mil|Location2.Y=1830.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (89.116mm,44.53mm)(89.116mm,54.53mm) on Top Overlay And Pad IC1-15(87.466mm,46.355mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3394.45mil|Location2.X=3402.117mil|Location1.Y=1811.339mil|Location2.Y=1819.006mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3394.45mil|Location2.X=3402.117mil|Location1.Y=1811.339mil|Location2.Y=1819.006mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "W5" (84.074mm,45.212mm) on Top Overlay And Pad IC1-15(87.466mm,46.355mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=1769.375mil|Location2.Y=1780.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.144mil|Location2.X=3501.394mil|Location1.Y=1769.375mil|Location2.Y=1780.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (89.116mm,44.53mm)(89.116mm,54.53mm) on Top Overlay And Pad IC1-16(87.466mm,45.085mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3396.138mil|Location2.X=3403.804mil|Location1.Y=1770.755mil|Location2.Y=1778.421mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3396.138mil|Location2.X=3403.804mil|Location1.Y=1770.755mil|Location2.Y=1778.421mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "W5" (84.074mm,45.212mm) on Top Overlay And Pad IC1-16(87.466mm,45.085mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.847mil|Location2.X=3696.097mil|Location1.Y=2119.375mil|Location2.Y=2130.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.847mil|Location2.X=3696.097mil|Location1.Y=2119.375mil|Location2.Y=2130.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.238mm &lt; 0.254mm) Between Track (94.107mm,53.467mm)(94.107mm,55.499mm) on Top Overlay And Pad IC1-8(92.366mm,53.975mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.238mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=2119.375mil|Location2.Y=2130.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=2119.375mil|Location2.Y=2130.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (90.716mm,44.53mm)(90.716mm,54.53mm) on Top Overlay And Pad IC1-8(92.366mm,53.975mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=2069.375mil|Location2.Y=2080.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=2069.375mil|Location2.Y=2080.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (90.716mm,44.53mm)(90.716mm,54.53mm) on Top Overlay And Pad IC1-7(92.366mm,52.705mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=2019.375mil|Location2.Y=2030.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=2019.375mil|Location2.Y=2030.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (90.716mm,44.53mm)(90.716mm,54.53mm) on Top Overlay And Pad IC1-6(92.366mm,51.435mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=1969.375mil|Location2.Y=1980.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=1969.375mil|Location2.Y=1980.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (90.716mm,44.53mm)(90.716mm,54.53mm) on Top Overlay And Pad IC1-5(92.366mm,50.165mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=1919.375mil|Location2.Y=1930.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=1919.375mil|Location2.Y=1930.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (90.716mm,44.53mm)(90.716mm,54.53mm) on Top Overlay And Pad IC1-4(92.366mm,48.895mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=1869.375mil|Location2.Y=1880.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=1869.375mil|Location2.Y=1880.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (90.716mm,44.53mm)(90.716mm,54.53mm) on Top Overlay And Pad IC1-3(92.366mm,47.625mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=1819.375mil|Location2.Y=1830.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=1819.375mil|Location2.Y=1830.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (90.716mm,44.53mm)(90.716mm,54.53mm) on Top Overlay And Pad IC1-2(92.366mm,46.355mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=1769.375mil|Location2.Y=1780.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.606mil|Location2.X=3589.856mil|Location1.Y=1769.375mil|Location2.Y=1780.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.147mm &lt; 0.254mm) Between Track (90.716mm,44.53mm)(90.716mm,54.53mm) on Top Overlay And Pad IC1-1(92.366mm,45.085mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.147mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID1EYTSZ5D5CBNGE4U45R0TEQLACBYAP10Q5LTEPIS3VMIGGI1ODNL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3296.59mil|Location2.X=3307.84mil|Location1.Y=1774.375mil|Location2.Y=1785.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3296.59mil|Location2.X=3307.84mil|Location1.Y=1774.375mil|Location2.Y=1785.625mil|Absolute=True">Silk To Silk Clearance Constraint: (0.121mm &lt; 0.254mm) Between Text "W5" (84.074mm,45.212mm) on Top Overlay And Track (83.566mm,44.958mm)(83.566mm,49.022mm) on Top Overlay Silk Text to Silk Clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3296.915mil|Location2.X=3308.165mil|Location1.Y=1767.125mil|Location2.Y=1780.819mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3296.915mil|Location2.X=3308.165mil|Location1.Y=1767.125mil|Location2.Y=1780.819mil|Absolute=True">Silk To Silk Clearance Constraint: (0.19mm &lt; 0.254mm) Between Text "W5" (84.074mm,45.212mm) on Top Overlay And Track (81.534mm,44.958mm)(83.566mm,44.958mm) on Top Overlay Silk Text to Silk Clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3180.289mil|Location2.X=3191.539mil|Location1.Y=1953.437mil|Location2.Y=1964.687mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3180.289mil|Location2.X=3191.539mil|Location1.Y=1953.437mil|Location2.Y=1964.687mil|Absolute=True">Silk To Silk Clearance Constraint: (0.152mm &lt; 0.254mm) Between Text "W6" (78.486mm,49.911mm) on Top Overlay And Track (81.153mm,49.53mm)(85.217mm,49.53mm) on Top Overlay Silk Text to Silk Clearance [0.152mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3191.167mil|Location2.X=3198.833mil|Location1.Y=1978.918mil|Location2.Y=1986.585mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3191.167mil|Location2.X=3198.833mil|Location1.Y=1978.918mil|Location2.Y=1986.585mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "W6" (78.486mm,49.911mm) on Top Overlay And Track (81.153mm,49.53mm)(81.153mm,51.562mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3189.798mil|Location2.X=3197.465mil|Location1.Y=2024.589mil|Location2.Y=2032.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3189.798mil|Location2.X=3197.465mil|Location1.Y=2024.589mil|Location2.Y=2032.255mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "W6" (78.486mm,49.911mm) on Top Overlay And Track (81.153mm,51.562mm)(85.217mm,51.562mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3124.364mil|Location2.X=3135.614mil|Location1.Y=2027.15mil|Location2.Y=2038.4mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3124.364mil|Location2.X=3135.614mil|Location1.Y=2027.15mil|Location2.Y=2038.4mil|Absolute=True">Silk To Silk Clearance Constraint: (0.121mm &lt; 0.254mm) Between Text "W6" (78.486mm,49.911mm) on Top Overlay And Track (79.502mm,51.943mm)(79.502mm,53.975mm) on Top Overlay Silk Text to Silk Clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3124.364mil|Location2.X=3135.614mil|Location1.Y=2027.15mil|Location2.Y=2038.4mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3124.364mil|Location2.X=3135.614mil|Location1.Y=2027.15mil|Location2.Y=2038.4mil|Absolute=True">Silk To Silk Clearance Constraint: (0.121mm &lt; 0.254mm) Between Text "W6" (78.486mm,49.911mm) on Top Overlay And Track (79.502mm,51.943mm)(83.566mm,51.943mm) on Top Overlay Silk Text to Silk Clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3106.167mil|Location2.X=3113.833mil|Location1.Y=1981.245mil|Location2.Y=1988.911mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3106.167mil|Location2.X=3113.833mil|Location1.Y=1981.245mil|Location2.Y=1988.911mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "W6" (78.486mm,49.911mm) on Top Overlay And Track (75.338mm,50.421mm)(78.994mm,50.421mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2972.071mil|Location2.X=2979.738mil|Location1.Y=1786.15mil|Location2.Y=1793.817mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2972.071mil|Location2.X=2979.738mil|Location1.Y=1786.15mil|Location2.Y=1793.817mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q1" (75.59mm,44.196mm) on Top Overlay And Track (75.338mm,44.621mm)(75.338mm,52.407mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.229mil|Location2.X=3114.895mil|Location1.Y=1973.506mil|Location2.Y=1981.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.229mil|Location2.X=3114.895mil|Location1.Y=1973.506mil|Location2.Y=1981.173mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "W6" (78.486mm,49.911mm) on Top Overlay And Track (79.021mm,44.621mm)(79.021mm,52.407mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2976.209mil|Location2.X=2983.875mil|Location1.Y=1752.899mil|Location2.Y=1760.565mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2976.209mil|Location2.X=2983.875mil|Location1.Y=1752.899mil|Location2.Y=1760.565mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q1" (75.59mm,44.196mm) on Top Overlay And Track (75.411mm,44.621mm)(79.021mm,44.621mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2972.071mil|Location2.X=2979.738mil|Location1.Y=1786.15mil|Location2.Y=1793.817mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2972.071mil|Location2.X=2979.738mil|Location1.Y=1786.15mil|Location2.Y=1793.817mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q1" (75.59mm,44.196mm) on Top Overlay And Track (75.338mm,44.621mm)(75.338mm,52.407mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.229mil|Location2.X=3114.895mil|Location1.Y=1973.506mil|Location2.Y=1981.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.229mil|Location2.X=3114.895mil|Location1.Y=1973.506mil|Location2.Y=1981.173mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "W6" (78.486mm,49.911mm) on Top Overlay And Track (79.021mm,44.621mm)(79.021mm,52.407mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4004.116mil|Location2.X=4015.366mil|Location1.Y=1519.375mil|Location2.Y=1530.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4004.116mil|Location2.X=4015.366mil|Location1.Y=1519.375mil|Location2.Y=1530.625mil|Absolute=True">Silk To Silk Clearance Constraint: (0.221mm &lt; 0.254mm) Between Text "R1" (99.568mm,38.735mm) on Top Overlay And Track (102.208mm,38.525mm)(102.208mm,46.311mm) on Top Overlay Silk Text to Silk Clearance [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4006.613mil|Location2.X=4017.863mil|Location1.Y=1739.372mil|Location2.Y=1750.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4006.613mil|Location2.X=4017.863mil|Location1.Y=1739.372mil|Location2.Y=1750.622mil|Absolute=True">Silk To Silk Clearance Constraint: (0.094mm &lt; 0.254mm) Between Text "R3" (99.187mm,44.069mm) on Top Overlay And Track (102.208mm,38.525mm)(102.208mm,46.311mm) on Top Overlay Silk Text to Silk Clearance [0.094mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4004.116mil|Location2.X=4015.366mil|Location1.Y=1519.375mil|Location2.Y=1530.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4004.116mil|Location2.X=4015.366mil|Location1.Y=1519.375mil|Location2.Y=1530.625mil|Absolute=True">Silk To Silk Clearance Constraint: (0.221mm &lt; 0.254mm) Between Text "R1" (99.568mm,38.735mm) on Top Overlay And Track (102.208mm,38.525mm)(102.208mm,46.311mm) on Top Overlay Silk Text to Silk Clearance [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4006.613mil|Location2.X=4017.863mil|Location1.Y=1739.372mil|Location2.Y=1750.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4006.613mil|Location2.X=4017.863mil|Location1.Y=1739.372mil|Location2.Y=1750.622mil|Absolute=True">Silk To Silk Clearance Constraint: (0.094mm &lt; 0.254mm) Between Text "R3" (99.187mm,44.069mm) on Top Overlay And Track (102.208mm,38.525mm)(102.208mm,46.311mm) on Top Overlay Silk Text to Silk Clearance [0.094mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4123.908mil|Location2.X=4135.158mil|Location1.Y=1907.359mil|Location2.Y=1918.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4123.908mil|Location2.X=4135.158mil|Location1.Y=1907.359mil|Location2.Y=1918.609mil|Absolute=True">Silk To Silk Clearance Constraint: (0.008mm &lt; 0.254mm) Between Text "P2" (102.21mm,47.32mm) on Top Overlay And Track (105.144mm,48.495mm)(105.144mm,49.295mm) on Top Overlay Silk Text to Silk Clearance [0.008mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4076.639mil|Location2.X=4084.305mil|Location1.Y=1905.419mil|Location2.Y=1913.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4076.639mil|Location2.X=4084.305mil|Location1.Y=1905.419mil|Location2.Y=1913.085mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "P2" (102.21mm,47.32mm) on Top Overlay And Track (103.644mm,48.495mm)(103.644mm,49.295mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3938.549mil|Location2.X=3946.215mil|Location1.Y=1774.887mil|Location2.Y=1782.553mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3938.549mil|Location2.X=3946.215mil|Location1.Y=1774.887mil|Location2.Y=1782.553mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R3" (99.187mm,44.069mm) on Top Overlay And Track (99.79mm,44.833mm)(101.09mm,46.133mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3904.845mil|Location2.X=3912.511mil|Location1.Y=1761.245mil|Location2.Y=1768.911mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3904.845mil|Location2.X=3912.511mil|Location1.Y=1761.245mil|Location2.Y=1768.911mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R3" (99.187mm,44.069mm) on Top Overlay And Track (95.79mm,44.833mm)(99.79mm,44.833mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3974.297mil|Location2.X=3985.547mil|Location1.Y=1797.78mil|Location2.Y=1809.03mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3974.297mil|Location2.X=3985.547mil|Location1.Y=1797.78mil|Location2.Y=1809.03mil|Absolute=True">Silk To Silk Clearance Constraint: (0.153mm &lt; 0.254mm) Between Text "R3" (99.187mm,44.069mm) on Top Overlay And Track (101.09mm,46.133mm)(101.09mm,51.433mm) on Top Overlay Silk Text to Silk Clearance [0.153mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3911.009mil|Location2.X=3918.676mil|Location1.Y=1535.748mil|Location2.Y=1543.415mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3911.009mil|Location2.X=3918.676mil|Location1.Y=1535.748mil|Location2.Y=1543.415mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R1" (99.568mm,38.735mm) on Top Overlay And Track (99.187mm,38.989mm)(99.187mm,43.053mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3981.167mil|Location2.X=3988.833mil|Location1.Y=1531.167mil|Location2.Y=1538.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3981.167mil|Location2.X=3988.833mil|Location1.Y=1531.167mil|Location2.Y=1538.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R1" (99.568mm,38.735mm) on Top Overlay And Track (99.187mm,38.989mm)(101.219mm,38.989mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3981.167mil|Location2.X=3988.833mil|Location1.Y=1531.167mil|Location2.Y=1538.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3981.167mil|Location2.X=3988.833mil|Location1.Y=1531.167mil|Location2.Y=1538.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R1" (99.568mm,38.735mm) on Top Overlay And Track (101.219mm,38.989mm)(101.219mm,43.053mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3724.372mil|Location2.X=3735.622mil|Location1.Y=2168.65mil|Location2.Y=2179.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3724.372mil|Location2.X=3735.622mil|Location1.Y=2168.65mil|Location2.Y=2179.9mil|Absolute=True">Silk To Silk Clearance Constraint: (0.045mm &lt; 0.254mm) Between Text "C2" (94.488mm,53.543mm) on Top Overlay And Track (94.107mm,55.499mm)(98.171mm,55.499mm) on Top Overlay Silk Text to Silk Clearance [0.045mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3711.009mil|Location2.X=3718.676mil|Location1.Y=2114.164mil|Location2.Y=2121.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3711.009mil|Location2.X=3718.676mil|Location1.Y=2114.164mil|Location2.Y=2121.83mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C2" (94.488mm,53.543mm) on Top Overlay And Track (94.107mm,53.467mm)(94.107mm,55.499mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3746.682mil|Location2.X=3754.349mil|Location1.Y=2101.167mil|Location2.Y=2108.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3746.682mil|Location2.X=3754.349mil|Location1.Y=2101.167mil|Location2.Y=2108.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C2" (94.488mm,53.543mm) on Top Overlay And Track (94.107mm,53.467mm)(98.171mm,53.467mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4126.167mil|Location2.X=4133.833mil|Location1.Y=2041.167mil|Location2.Y=2048.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4126.167mil|Location2.X=4133.833mil|Location1.Y=2041.167mil|Location2.Y=2048.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C1" (103.454mm,51.918mm) on Top Overlay And Track (100.838mm,51.943mm)(104.902mm,51.943mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4126.167mil|Location2.X=4133.833mil|Location1.Y=2041.167mil|Location2.Y=2048.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4126.167mil|Location2.X=4133.833mil|Location1.Y=2041.167mil|Location2.Y=2048.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C1" (103.454mm,51.918mm) on Top Overlay And Track (104.902mm,51.943mm)(104.902mm,53.975mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4077.372mil|Location2.X=4088.622mil|Location1.Y=2106.65mil|Location2.Y=2117.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4077.372mil|Location2.X=4088.622mil|Location1.Y=2106.65mil|Location2.Y=2117.9mil|Absolute=True">Silk To Silk Clearance Constraint: (0.146mm &lt; 0.254mm) Between Text "C1" (103.454mm,51.918mm) on Top Overlay And Track (100.838mm,53.975mm)(104.902mm,53.975mm) on Top Overlay Silk Text to Silk Clearance [0.146mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

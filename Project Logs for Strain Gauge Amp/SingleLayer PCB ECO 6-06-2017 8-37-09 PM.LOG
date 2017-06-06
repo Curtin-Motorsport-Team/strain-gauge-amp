@@ -1,0 +1,19 @@
+Removed Pin From Net: NetName=VREF Pin=W1-2
+Removed Pin From Net: NetName=VREF Pin=W2-2
+Removed Pin From Net: NetName=VREF Pin=W3-2
+Removed Pin From Net: NetName=VREF Pin=W4-2
+Removed Pin From Net: NetName=VOUT- Pin=W5-2
+Removed Pin From Net: NetName=VREF Pin=W7-1
+Removed Member From Class: ClassName=Sheet1 Member=W1
+Removed Member From Class: ClassName=Sheet1 Member=W2
+Removed Member From Class: ClassName=Sheet1 Member=W3
+Removed Member From Class: ClassName=Sheet1 Member=W4
+Removed Member From Class: ClassName=Sheet1 Member=W7
+Change Component Footprint: Designator=W5 Old Footprint=JUMPER1 New Footprint=R0805
+Change Component Footprint: Designator=W6 Old Footprint=JUMPER1 New Footprint=R0805
+Added Pin To Net: NetName=VREF Pin=IC1-4
+Added Pin To Net: NetName=VREF Pin=IC1-16
+Added Pin To Net: NetName=VREF Pin=Q1-3
+Added Pin To Net: NetName=2_5V Pin=IC1-14
+Added Pin To Net: NetName=2_5V Pin=W5-2
+Added Net: Name=2_5V

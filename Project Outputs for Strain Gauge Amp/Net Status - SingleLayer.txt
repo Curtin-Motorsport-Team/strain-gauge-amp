@@ -1,0 +1,19 @@
+Net Status Report
+Filename     : C:\Users\natha\Documents\strain-gauge-amp\SingleLayer.PcbDoc
+Date         : 6/06/2017
+Time         : 9:23:05 PM
+Time Elapsed : 00:00:00
+
+Nets, Layer, Length
+    12V, Signal Layers Only, 56.9981mm
+    2_5V, Signal Layers Only, 18.3098mm
+    GND, Signal Layers Only, 68.5203mm
+    NetIC1_5, Signal Layers Only, 8.8313mm
+    NetIC1_8, Signal Layers Only, 21.3618mm
+    NetIC1_9, Signal Layers Only, 15.99mm
+    VIN+, Signal Layers Only, 53.284mm
+    VIN-, Signal Layers Only, 44.182mm
+    VOUT+, Signal Layers Only, 27.0218mm
+    VOUT-, Signal Layers Only, 0mm
+    VREF, Signal Layers Only, 96.6314mm
+count : 11
